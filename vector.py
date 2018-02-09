@@ -1,4 +1,6 @@
 from math import sqrt
+from math import acos
+
 
 class vector(object):
     def __init__(self,coordinates):
@@ -39,3 +41,11 @@ class vector(object):
     def normalize(self):
         # Previous Version: return tuple(round(( _ / self.magnitude()), 3) for _ in self.coordinates)
         return self.scalar_mul(1.0 / self.magnitude())  # re-using existing code increases efficiency.
+
+
+    def dot_product(self, v):
+        return round(sum([self.coordinates[_] * v.coordinates[_] for _ in range(self.dimension)]),3)
+
+
+    def angle(self, v):
+        return round(acos(self.dot_product(v) / (self.magnitude() * v.magnitude())), 3)
